@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="gmail.yuchisong7.portfolio.domain">
+	<class name="User" table="user">
+		<id name="email" column="email" />
+		<property name="userpw" column="userpw" />
+		<property name="nickname" column="nickname" />
+		<property name="profile" column="profile" />
+	
+	</class>
+</hibernate-mapping>
