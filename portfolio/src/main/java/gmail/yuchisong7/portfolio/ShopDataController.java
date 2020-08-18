@@ -45,7 +45,7 @@ public class ShopDataController {
     }
     @RequestMapping(value="insert", method=RequestMethod.POST)
     public Map<String, Object>insert(HttpServletRequest request){
-    	
+    
     	shopService.insert(request);
         Boolean result = (Boolean)request.getAttribute("insert");
     	Map<String, Object> map = new HashMap<String, Object>();

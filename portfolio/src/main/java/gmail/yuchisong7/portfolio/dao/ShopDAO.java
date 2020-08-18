@@ -42,10 +42,17 @@ public class ShopDAO {
     	//shopname에서 검색
     	}
     	if(searchtype == null) {
-    		list = sessionFactory.getCurrentSession().createNativeQuery( "select * from shop limit " + start + "," + size  ).getResultList();
-    	}else if(searchtype.equals("shopname")) {
-    		list = sessionFactory.getCurrentSession().createNativeQuery( "select * from shop"  + "where lower(shopname) like ¥'" + value + "¥' limit " + start + "," + size).getResultList();
-    	}
+			list = sessionFactory.getCurrentSession()
+				.createNativeQuery(
+					"select * from shop limit " 
+				+ start + "," + size ).getResultList();
+		}else if(searchtype.equals("shopname")) {
+			list = sessionFactory.getCurrentSession()
+				.createNativeQuery(
+					"select * from shop where "
+					+ "lower(shopname) like \'" 
+							+ value + "\' limit " + 
+					start + "," + size).getResultList();}
     	return list;
     }
   	//검색 결과에  데이터 개수를 리턴하는 메소드
@@ -59,7 +66,7 @@ public class ShopDAO {
     	if(value != null) {
     	value = "%" + value.toLowerCase() + "%";
     	}
-    	if(searchtype == null) {
+    	if(searchtype == null || searchtype.equals("")) {
 			list = sessionFactory.getCurrentSession()
 				.createNativeQuery(
 					"select count(*) from shop")

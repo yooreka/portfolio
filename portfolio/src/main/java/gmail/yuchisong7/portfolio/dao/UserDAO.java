@@ -15,6 +15,7 @@ public class UserDAO {
 	
 	//email 중복검사를 위한 메소드
 	public List<String> emailcheck(String email){
+		//암호화 되어있기 때문에 이메일을 전부 줘야됨 
 		List<String> list = 
 				sessionFactory.getCurrentSession()
 				.createNativeQuery(
@@ -43,14 +44,14 @@ public class UserDAO {
 	//로그인을 위한 메소드
 	//nickname 과 pw를 가지고 로그인
 	//nickname을 가지고 모든 정보를 전부 찾아가면 됩니다.
-	public List<User> login(String nickname){
+	public List<User> login(String email){
 		List<User> list = 
 				sessionFactory.getCurrentSession()
 				.createNativeQuery(
-					"select nickname, userpw, email, profile "
+					"select email, userpw, nickname, profile "
 					+ "from user "
-					+ "where nickname = \'" + nickname 
-					+ "\'")
+					+ "where email = \'" + email
+					+ "\'", User.class)
 				.getResultList();
 		return list;
 	}

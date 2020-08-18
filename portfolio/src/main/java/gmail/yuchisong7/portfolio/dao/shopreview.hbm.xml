@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="gmail.yuchisong7.portfolio.domain">
+	<class name="ShopReview" table="shopreview">
+		<id name="shopcommentid" column="shopcommentid" />
+		<property name="nickname" column="nickname" />
+		<property name="shopid" column="shopid" />
+		<property name="shopcommentdate" column="shopcommentdate" />
+		<property name="shopmessage" column="shopmessage" />
+	
+	</class>
+</hibernate-mapping>

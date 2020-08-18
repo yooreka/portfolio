@@ -25,6 +25,9 @@
 			<list>
 				<value>gmail/yuchisong7/portfolio/dao/shop.hbm.xml</value>
 				<value>gmail/yuchisong7/portfolio/dao/user.hbm.xml</value>
+				<value>gmail/yuchisong7/portfolio/dao/touristspot.hbm.xml</value>
+			    <value>gmail/yuchisong7/portfolio/dao/shopreview.hbm.xml</value>
+			    <value>gmail/yuchisong7/portfolio/dao/spotreview.hbm.xml</value>
 			</list>
 		</property>
 		<!-- 데이터베이스 종류 -->

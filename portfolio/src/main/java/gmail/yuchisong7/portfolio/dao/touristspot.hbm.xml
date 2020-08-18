@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="gmail.yuchisong7.portfolio.domain">
+	<class name="TouristSpot" table="touristspot">
+		<id name="spotid" column="spotid" />
+		<property name="roadaddress" column="roadaddress" />
+		<property name="spotname" column="spotname" />
+		<property name="touraddress" column="touraddress" />
+		<property name="businesshour" column="businesshour" />
+		<property name="tell" column="tell" />
+		<property name="price" column="price" />
+	
+	</class>
+</hibernate-mapping>

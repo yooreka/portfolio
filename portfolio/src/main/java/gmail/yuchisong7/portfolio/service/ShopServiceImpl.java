@@ -25,14 +25,14 @@ public class ShopServiceImpl implements ShopService {
 		//파라미터 읽기
 		String searchtype = request.getParameter("searchtype");
 		String value = request.getParameter("value");
-		String pageno = request.getParameter("pageno");
+		String pageNo = request.getParameter("pageNo");
 		//작업을 수행
 		int size = 3;
 		//시작 위치 번호를 저장할 변수
 		//MySQL은 데이터 번호가 0부터 시작
 		int start = 0;
-		if(pageno !=null) {
-			start = (Integer.parseInt(pageno) - 1) * size;
+		if(pageNo !=null) {
+			start = (Integer.parseInt(pageNo) - 1) * size;
 		}
 		//DAO 메소드의 파라미터를 만들기
 	    Map<String, Object> map = new HashMap<String, Object>();
