@@ -1,4 +1,4 @@
-package gmail.yuchisong7.portfolio.service;
+	package gmail.yuchisong7.portfolio.service;
 
 import java.io.FileOutputStream;
 import java.util.HashMap;
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
 		user.setNickname(nickname);
 		user.setUserpw(BCrypt.hashpw(userpw, BCrypt.gensalt()));
 		user.setProfile(profile);
-
+        
 		// 회원가입 메소드 호출
 		userDao.join(user);
 		map.put("result", true);
@@ -113,28 +113,26 @@ public class UserServiceImpl implements UserService {
 		// 파라미터 읽기
 		String email = request.getParameter("email");
 		String userpw = request.getParameter("userpw");
-		System.out.println("email:" + email);
-		System.out.println("userpw:" + userpw);
 		// 로그인 성공 여부 저장
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", false);
 		// nickname을 가지고 데이터를 찾아오기
-		List<User> list = userDao.login(email);
-		if (list == null || list.size() < 1) {
-			request.setAttribute("result", map);
-			return;
-		}
+		List<User> list = userDao.login();
+		
 		// 찾아온 데이터와 비밀번호를 비교
 		for (User user : list) {
-			if (BCrypt.checkpw(userpw, user.getUserpw())) {
+			try {
+			if (email.equals(CryptoUtil.decryptAES256(user.getEmail(), "yu7734@naver.com")) && BCrypt.checkpw(userpw, user.getUserpw())) {
 				map.put("email", email);
 				map.put("profile", user.getProfile());
-				try {
-					map.put("email", CryptoUtil.decryptAES256(user.getEmail(), "yu7734@naver.com"));
-				} catch (Exception e) {e.getMessage();
-				}
+				map.put("nickname", user.getNickname());
+				map.put("logindate", user.getLogindate());
+				map.put("result", true);
+				break;
 			}
+			}catch(Exception e) {}
 		}
+		request.setAttribute("result", map);
 	}
 
 	@Override
@@ -145,7 +143,7 @@ public class UserServiceImpl implements UserService {
 		// 이전값을 파라미터로 보내고 새로운 값이 null이 아니라면 새로운 값으로 대체
 		String profile = request.getParameter("oldprofile");
 		// email 찾아오기
-		List<User> list = userDao.login(nickname);
+		List<User> list = userDao.login();
 		String email = list.get(0).getEmail();
 
 		// 이미지 파일 업로드
@@ -181,7 +179,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(HttpServletRequest request) {
 		String nickname = request.getParameter("nickname");
-		List<User> list = userDao.login(nickname);
+		List<User> list = userDao.login();
 		String email = list.get(0).getEmail();
 		User user = new User();
 		user.setEmail(email);

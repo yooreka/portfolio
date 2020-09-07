@@ -44,14 +44,12 @@ public class UserDAO {
 	//로그인을 위한 메소드
 	//nickname 과 pw를 가지고 로그인
 	//nickname을 가지고 모든 정보를 전부 찾아가면 됩니다.
-	public List<User> login(String email){
+	public List<User> login(){
 		List<User> list = 
 				sessionFactory.getCurrentSession()
 				.createNativeQuery(
 					"select email, userpw, nickname, profile "
-					+ "from user "
-					+ "where email = \'" + email
-					+ "\'", User.class)
+					+ "from user ", User.class)
 				.getResultList();
 		return list;
 	}
